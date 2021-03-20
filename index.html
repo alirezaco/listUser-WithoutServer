@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <nav class="navbar-expand-lg navbar navbar-dark bg-dark bg-aqua" aria-label="">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pointer" id="btn-open-create">Create</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="input-search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" id="search" type="button">Search</button>
+                </form>
+            </div>
+        </nav>
+
+        <div class="row mt-5" id="card"></div>
+
+        <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-2">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" aria-label="Previous" id="pageBack">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <div style="display: flex;" id="pagination">
+
+
+                </div>
+                <li class="page-item">
+                    <a class="page-link" aria-label="Next" id="pageNext">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="modal bg-Black" tabindex="-1" id="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">id : <span></span></h3>
+                        <em class="fa fa-close closeModal pointer" style="font-size:24px"></em>
+                    </div>
+                    <div class="modal-body" id="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary closeModal">Close</button>
+                        <button type="button" class="btn btn-danger" id="delete">Delete</button>
+                        <button type="button" class="btn btn-primary" id="btn-update">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal bg-Black" tabindex="-1" id="update">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="d-flex">
+                            <img src="..." alt="avatar" class="update-avatar">
+                            <h3 class="modal-title ml-3">id : <span></span></h3>
+                        </div>
+                        <em class="fa fa-close closeModal pointer" style="font-size:24px"></em>
+                    </div>
+                    <div class="modal-body" id="update-body">
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <div>
+                            <input class="form-control form-control-sm" id="formFileSm" type="file" onchange="getImage(this)">
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-secondary closeModal">Close</button>
+                            <button type="button" class="btn btn-primary" id="save-update">Save change</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal bg-Black" tabindex="-1" id="create">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title ml-3">Create</h3>
+                        <em class="fa fa-close closeModal pointer" style="font-size:24px"></em>
+                    </div>
+                    <div id="creat-body" class="modal-body">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="assets/product3.jpeg" alt="avatar" class="create-avatar">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <input type="text" class="form-control" placeholder="id">
+                                    <input type="text" class="form-control mt-3" placeholder="Frist name">
+                                    <input type="text" class="form-control mt-3" placeholder="Last name">
+                                    <input type="email" class="form-control mt-3" placeholder="email">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <div>
+                            <input class="form-control form-control-sm" type="file" onchange="getImage(this)">
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-secondary closeModal">Close</button>
+                            <button type="button" class="btn btn-primary" id="btn-create">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-warning alert-dismissible fade show modal justify-content-between " role="alert" style="height: 50px;">
+        <strong>Id not true!</strong>
+        <em class="fa fa-close pointer" style="font-size:24px" id="close-alert"></em>
+    </div>
+
+
+
+
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
